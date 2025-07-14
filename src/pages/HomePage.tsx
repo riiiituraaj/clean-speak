@@ -2,43 +2,33 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, MapPin, Users, FileText, Phone, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const HomePage = () => {
-  const features = [
-    {
-      icon: Shield,
-      title: "Anonymous Reporting",
-      description: "Report illegal dumping safely and anonymously with photo evidence"
-    },
-    {
-      icon: MapPin,
-      title: "Location Mapping",
-      description: "Pin exact locations on interactive maps for precise reporting"
-    },
-    {
-      icon: Users,
-      title: "Community Forum",
-      description: "Join discussions with fellow citizens about local waste issues"
-    },
-    {
-      icon: FileText,
-      title: "Know the Laws",
-      description: "Learn about waste management laws and penalties in your area"
-    },
-    {
-      icon: Phone,
-      title: "Contact Authorities",
-      description: "Direct access to pollution control boards and municipal offices"
-    },
-    {
-      icon: MessageCircle,
-      title: "24/7 Support",
-      description: "Get help from our friendly chatbot anytime, anywhere"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const features = [{
+    icon: Shield,
+    title: "Anonymous Reporting",
+    description: "Report illegal dumping safely and anonymously with photo evidence"
+  }, {
+    icon: MapPin,
+    title: "Location Mapping",
+    description: "Pin exact locations on interactive maps for precise reporting"
+  }, {
+    icon: Users,
+    title: "Community Forum",
+    description: "Join discussions with fellow citizens about local waste issues"
+  }, {
+    icon: FileText,
+    title: "Know the Laws",
+    description: "Learn about waste management laws and penalties in your area"
+  }, {
+    icon: Phone,
+    title: "Contact Authorities",
+    description: "Direct access to pollution control boards and municipal offices"
+  }, {
+    icon: MessageCircle,
+    title: "24/7 Support",
+    description: "Get help from our friendly chatbot anytime, anywhere"
+  }];
+  return <div className="min-h-screen">
       {/* Navigation */}
       <nav className="w-full py-4 px-6 lg:px-12 border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -75,7 +65,7 @@ const HomePage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="gradient-hero py-20 lg:py-32">
+      <section className="gradient-hero py-20 lg:py-32 rounded-md -bottom-0.5 ">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
             CleanSpeak
@@ -112,9 +102,8 @@ const HomePage = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="gradient-card border-border/50 soft-shadow hover:soft-shadow-lg smooth-hover">
-                <CardContent className="p-8 text-center">
+            {features.map((feature, index) => <Card key={index} className="gradient-card border-border/50 soft-shadow hover:soft-shadow-lg smooth-hover">
+                <CardContent className="p-8 text-center bg-rose-200 rounded-3xl">
                   <feature.icon className="h-12 w-12 text-accent mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-foreground mb-3">
                     {feature.title}
@@ -123,8 +112,7 @@ const HomePage = () => {
                     {feature.description}
                   </p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -185,12 +173,10 @@ const HomePage = () => {
           </div>
           
           <div className="border-t border-border/50 mt-12 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 CleanSpeak. Built with care for cleaner communities.</p>
+            <p>© 2025 CleanSpeak. Built with care for cleaner communities.</p>
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default HomePage;
