@@ -8,33 +8,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* CleanSpeak Color Palette - Soft & Calming */
+    --background: 45 14% 97%; /* Ivory base #F9F9F6 */
+    --foreground: 0 0% 11%; /* Charcoal black #1C1C1C */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 45 14% 97%;
+    --card-foreground: 0 0% 11%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 45 14% 97%;
+    --popover-foreground: 0 0% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Sage Green as primary */
+    --primary: 95 23% 70%; /* Sage Green #AFC9A0 */
+    --primary-foreground: 0 0% 11%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Powder Blue as secondary */
+    --secondary: 210 52% 80%; /* Powder Blue #A7C7E7 */
+    --secondary-foreground: 0 0% 11%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 45 14% 94%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Assam Red for accents */
+    --accent: 345 69% 38%; /* Traditional Red #A41E34 */
+    --accent-foreground: 45 14% 97%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Muga Gold for special highlights */
+    --gold: 45 74% 53%; /* Muga Gold #D4AF37 */
+    --gold-foreground: 0 0% 11%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 14% 97%;
+
+    --border: 45 14% 88%;
+    --input: 45 14% 94%;
+    --ring: 95 23% 70%;
 
     --radius: 0.5rem;
 
@@ -101,5 +109,42 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Soft gradients and animations */
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary) / 0.3) 100%);
+  }
+
+  .gradient-card {
+    background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--primary) / 0.05) 100%);
+  }
+
+  /* Gamosa-inspired pattern for footer */
+  .gamosa-pattern {
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(var(--accent) / 0.1) 0px,
+      hsl(var(--accent) / 0.1) 2px,
+      transparent 2px,
+      transparent 12px,
+      hsl(var(--gold) / 0.1) 12px,
+      hsl(var(--gold) / 0.1) 14px,
+      transparent 14px,
+      transparent 24px
+    );
+  }
+
+  /* Smooth animations */
+  .smooth-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .soft-shadow {
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.1);
+  }
+
+  .soft-shadow-lg {
+    box-shadow: 0 8px 40px hsl(var(--primary) / 0.15);
   }
 }
