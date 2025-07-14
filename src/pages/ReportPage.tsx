@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import CameraCapture from "@/components/CameraCapture";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,6 +23,8 @@ const ReportPage = () => {
   });
   
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showCamera, setShowCamera] = useState(false);
+  const [capturedFiles, setCapturedFiles] = useState<File[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -194,21 +197,46 @@ const ReportPage = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/50 smooth-hover">
-                  <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-foreground mb-2">
-                    Upload Photos or Videos
-                  </h3>
-                  <p className="text-muted-foreground mb-4">
-                    Visual evidence helps authorities take faster action
-                  </p>
-                  <Button variant="outline" type="button">
-                    Choose Files
-                  </Button>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    Supported formats: JPG, PNG, MP4, MOV (Max 50MB)
-                  </p>
-                </div>
+{showCamera ? (
+                  <CameraCapture
+                    onCapture={(file, location) => {
+                      setCapturedFiles([...capturedFiles, file]);
+                      if (location) {
+                        setFormData({...formData, location: `${location.lat}, ${location.lng}`});
+                      }
+                      setShowCamera(false);
+                    }}
+                    onClose={() => setShowCamera(false)}
+                  />
+                ) : (
+                  <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/50 smooth-hover">
+                    <Upload className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-foreground mb-2">
+                      Capture or Upload Evidence
+                    </h3>
+                    <p className="text-muted-foreground mb-4">
+                      Take photos/videos with GPS tagging or upload existing files
+                    </p>
+                    <div className="flex gap-3 justify-center">
+                      <Button variant="hero" type="button" onClick={() => setShowCamera(true)}>
+                        <Camera className="h-4 w-4 mr-2" />
+                        Live Capture
+                      </Button>
+                      <Button variant="outline" type="button">
+                        <Upload className="h-4 w-4 mr-2" />
+                        Upload Files
+                      </Button>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Live capture includes GPS tagging • Supported: JPG, PNG, MP4, MOV (Max 50MB)
+                    </p>
+                    {capturedFiles.length > 0 && (
+                      <div className="mt-4 text-sm text-accent">
+                        📸 {capturedFiles.length} file(s) captured with GPS
+                      </div>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
 
