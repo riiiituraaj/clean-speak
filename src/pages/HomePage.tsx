@@ -63,6 +63,9 @@ const HomePage = () => {
             <Link to="/contacts" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
               {t('contact')}
             </Link>
+            <Link to="/help" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
+              {language === 'en' ? 'Help' : 'সহায়'}
+            </Link>
           </div>
           <div className="flex items-center space-x-4">
             <DropdownMenu>

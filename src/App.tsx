@@ -11,6 +11,7 @@ import ForumPage from "./pages/ForumPage";
 import ContactsPage from "./pages/ContactsPage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
+import HelpPage from "./pages/HelpPage";
 import NotFound from "./pages/NotFound";
 import Chatbot from "./components/Chatbot";
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/help" element={<HelpPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Chatbot />
