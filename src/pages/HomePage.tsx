@@ -1,114 +1,149 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, MapPin, Users, FileText, Phone, MessageCircle } from "lucide-react";
+import { Shield, MapPin, Users, FileText, Phone, MessageCircle, Globe, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 const HomePage = () => {
+  const { language, setLanguage, t } = useLanguage();
+  
   const features = [{
     icon: Shield,
-    title: "Anonymous Reporting",
-    description: "Report illegal dumping safely and anonymously with photo evidence"
+    title: t('anonymousReporting'),
+    description: t('anonymousReportingDesc')
   }, {
     icon: MapPin,
-    title: "Location Mapping",
-    description: "Pin exact locations on interactive maps for precise reporting"
+    title: t('locationMapping'),
+    description: t('locationMappingDesc')
   }, {
     icon: Users,
-    title: "Community Forum",
-    description: "Join discussions with fellow citizens about local waste issues"
+    title: t('communityForum'),
+    description: t('communityForumDesc')
   }, {
     icon: FileText,
-    title: "Know the Laws",
-    description: "Learn about waste management laws and penalties in your area"
+    title: t('knowLaws'),
+    description: t('knowLawsDesc')
   }, {
     icon: Phone,
-    title: "Contact Authorities",
-    description: "Direct access to pollution control boards and municipal offices"
+    title: t('contactAuthorities'),
+    description: t('contactAuthoritiesDesc')
   }, {
     icon: MessageCircle,
-    title: "24/7 Support",
-    description: "Get help from our friendly chatbot anytime, anywhere"
+    title: t('support247'),
+    description: t('support247Desc')
   }];
   return <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="w-full py-4 px-6 lg:px-12 border-b border-border/50 bg-background/80 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="w-full py-4 px-6 lg:px-12 border-b border-border/50 bg-background/90 backdrop-blur-md sticky top-0 z-50 soft-shadow">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Shield className="h-8 w-8 text-accent" />
-            <span className="text-2xl font-bold text-foreground">CleanSpeak</span>
-          </div>
+          <Link to="/" className="flex items-center space-x-2 smooth-hover">
+            <Shield className="h-8 w-8 text-accent floating-animation" />
+            <span className={`text-2xl font-bold text-foreground ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('heroTitle')}
+            </span>
+          </Link>
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-foreground hover:text-accent smooth-hover">
-              Home
+            <Link to="/" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('home')}
             </Link>
-            <Link to="/report" className="text-foreground hover:text-accent smooth-hover">
-              Report
+            <Link to="/report" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('report')}
             </Link>
-            <Link to="/forum" className="text-foreground hover:text-accent smooth-hover">
-              Forum
+            <Link to="/forum" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('forum')}
             </Link>
-            <Link to="/laws" className="text-foreground hover:text-accent smooth-hover">
-              Laws
+            <Link to="/laws" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('laws')}
             </Link>
-            <Link to="/contact" className="text-foreground hover:text-accent smooth-hover">
-              Contact
+            <Link to="/contacts" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('contact')}
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              Sign In
-            </Button>
-            <Button variant="gold" size="sm">
-              Sign Up
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <Globe className="h-4 w-4" />
+                  <span className={language === 'as' ? 'assamese-font' : ''}>{t('language')}</span>
+                  <ChevronDown className="h-3 w-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={() => setLanguage('en')}>
+                  {t('english')}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLanguage('as')} className="assamese-font">
+                  {t('assamese')}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Link to="/login">
+              <Button variant="outline" size="sm" className={language === 'as' ? 'assamese-font' : ''}>
+                {t('signIn')}
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="gold" size="sm" className={language === 'as' ? 'assamese-font' : ''}>
+                {t('signUp')}
+              </Button>
+            </Link>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="gradient-hero py-20 lg:py-32 rounded-md -bottom-0.5 ">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-            CleanSpeak
-          </h1>
-          <p className="text-xl lg:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-            Raise Your Voice for a Cleaner Tomorrow
-          </p>
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Report illegal dumping easily, safely, and anonymously. Together, we can build cleaner, healthier communities across India.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/report">
-              <Button variant="hero" className="w-full sm:w-auto">
-                Report Now
+      <section className="gradient-hero py-20 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center relative z-10">
+          <div className="slide-up">
+            <h1 className={`text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('heroTitle')}
+            </h1>
+            <p className={`text-xl lg:text-2xl text-accent mb-4 max-w-3xl mx-auto font-semibold ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('heroSubtitle')}
+            </p>
+            <p className={`text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('heroDescription')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/report">
+                <Button variant="hero" className={`w-full sm:w-auto pulse-glow ${language === 'as' ? 'assamese-font' : ''}`}>
+                  {t('reportNow')}
+                </Button>
+              </Link>
+              <Button variant="secondary" size="lg" className={`w-full sm:w-auto ${language === 'as' ? 'assamese-font' : ''}`}>
+                {t('learnMore')}
               </Button>
-            </Link>
-            <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-              Learn More
-            </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-gradient-to-b from-background to-muted/30">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              How CleanSpeak Works
+          <div className="text-center mb-16 slide-up">
+            <h2 className={`text-3xl lg:text-4xl font-bold text-foreground mb-4 ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('featuresTitle')}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Simple, secure, and effective tools to help you make a difference in your community
+            <p className={`text-lg text-muted-foreground max-w-2xl mx-auto ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('featuresSubtitle')}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => <Card key={index} className="gradient-card border-border/50 soft-shadow hover:soft-shadow-lg smooth-hover">
-                <CardContent className="p-8 text-center bg-rose-200 rounded-3xl">
-                  <feature.icon className="h-12 w-12 text-accent mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
+            {features.map((feature, index) => <Card key={index} className="gradient-card border-border/50 soft-shadow hover:soft-shadow-lg smooth-hover group">
+                <CardContent className="p-8 text-center">
+                  <feature.icon className="h-12 w-12 text-accent mx-auto mb-4 group-hover:scale-110 smooth-hover" />
+                  <h3 className={`text-xl font-semibold text-foreground mb-3 ${language === 'as' ? 'assamese-font' : ''}`}>
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className={`text-muted-foreground leading-relaxed ${language === 'as' ? 'assamese-font' : ''}`}>
                     {feature.description}
                   </p>
                 </CardContent>
@@ -118,62 +153,71 @@ const HomePage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Ready to Make a Difference?
+      <section className="py-20 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
+        <div className="absolute inset-0 gamosa-pattern opacity-30"></div>
+        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center relative z-10">
+          <h2 className={`text-3xl lg:text-4xl font-bold text-foreground mb-6 ${language === 'as' ? 'assamese-font' : ''}`}>
+            {t('ctaTitle')}
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of citizens across India who are already using CleanSpeak to report illegal dumping and create cleaner communities.
+          <p className={`text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed ${language === 'as' ? 'assamese-font' : ''}`}>
+            {t('ctaDescription')}
           </p>
           <Link to="/report">
-            <Button variant="hero">
-              Start Reporting Today
+            <Button variant="hero" className={`pulse-glow ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('startReporting')}
             </Button>
           </Link>
         </div>
       </section>
 
       {/* Footer with Gamosa Pattern */}
-      <footer className="gamosa-pattern border-t border-border">
+      <footer className="gamosa-pattern border-t border-accent/30 bg-gradient-to-b from-background to-muted/50">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <Shield className="h-8 w-8 text-accent" />
-                <span className="text-2xl font-bold text-foreground">CleanSpeak</span>
-              </div>
-              <p className="text-muted-foreground mb-4 max-w-md">
-                Empowering citizens to report illegal dumping and build cleaner, healthier communities across India.
+              <Link to="/" className="flex items-center space-x-2 mb-4 smooth-hover">
+                <Shield className="h-8 w-8 text-accent floating-animation" />
+                <span className={`text-2xl font-bold text-foreground ${language === 'as' ? 'assamese-font' : ''}`}>
+                  {t('heroTitle')}
+                </span>
+              </Link>
+              <p className={`text-muted-foreground mb-4 max-w-md leading-relaxed ${language === 'as' ? 'assamese-font' : ''}`}>
+                {t('footerDescription')}
               </p>
-              <p className="text-sm text-muted-foreground">
-                Inspired by the beautiful weaving traditions of Assam
+              <p className={`text-sm text-accent font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
+                {t('footerInspired')}
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+              <h4 className={`font-semibold text-foreground mb-4 ${language === 'as' ? 'assamese-font' : ''}`}>
+                {t('quickLinks')}
+              </h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><Link to="/report" className="hover:text-accent smooth-hover">Report Dumping</Link></li>
-                <li><Link to="/forum" className="hover:text-accent smooth-hover">Community Forum</Link></li>
-                <li><Link to="/laws" className="hover:text-accent smooth-hover">Laws & Penalties</Link></li>
-                <li><Link to="/contact" className="hover:text-accent smooth-hover">Contact Authorities</Link></li>
+                <li><Link to="/report" className={`hover:text-accent smooth-hover ${language === 'as' ? 'assamese-font' : ''}`}>{t('reportDumping')}</Link></li>
+                <li><Link to="/forum" className={`hover:text-accent smooth-hover ${language === 'as' ? 'assamese-font' : ''}`}>{t('communityForum')}</Link></li>
+                <li><Link to="/laws" className={`hover:text-accent smooth-hover ${language === 'as' ? 'assamese-font' : ''}`}>{t('laws')}</Link></li>
+                <li><Link to="/contacts" className={`hover:text-accent smooth-hover ${language === 'as' ? 'assamese-font' : ''}`}>{t('contactAuthorities')}</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Support</h4>
+              <h4 className={`font-semibold text-foreground mb-4 ${language === 'as' ? 'assamese-font' : ''}`}>
+                {t('support')}
+              </h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><Link to="/about" className="hover:text-accent smooth-hover">About Us</Link></li>
-                <li><Link to="/privacy" className="hover:text-accent smooth-hover">Privacy Policy</Link></li>
-                <li><Link to="/terms" className="hover:text-accent smooth-hover">Terms of Service</Link></li>
-                <li><Link to="/help" className="hover:text-accent smooth-hover">Help Center</Link></li>
+                <li><Link to="/about" className={`hover:text-accent smooth-hover ${language === 'as' ? 'assamese-font' : ''}`}>{t('aboutUs')}</Link></li>
+                <li><Link to="/privacy" className={`hover:text-accent smooth-hover ${language === 'as' ? 'assamese-font' : ''}`}>{t('privacyPolicy')}</Link></li>
+                <li><Link to="/terms" className={`hover:text-accent smooth-hover ${language === 'as' ? 'assamese-font' : ''}`}>{t('termsOfService')}</Link></li>
+                <li><Link to="/help" className={`hover:text-accent smooth-hover ${language === 'as' ? 'assamese-font' : ''}`}>{t('helpCenter')}</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-border/50 mt-12 pt-8 text-center text-muted-foreground">
-            <p>© 2025 CleanSpeak. Built with care for cleaner communities.</p>
+          <div className="border-t border-accent/20 mt-12 pt-8 text-center">
+            <p className={`text-muted-foreground ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('copyright')}
+            </p>
           </div>
         </div>
       </footer>
