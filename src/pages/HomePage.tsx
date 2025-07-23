@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, MapPin, Users, FileText, Phone, MessageCircle, Globe, ChevronDown } from "lucide-react";
+import { Shield, MapPin, Users, FileText, Phone, MessageCircle, Globe, ChevronDown, Droplets, CheckCircle, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { 
@@ -63,6 +63,9 @@ const HomePage = () => {
             <Link to="/contacts" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
               {t('contact')}
             </Link>
+            <Link to="/water-quality" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
+              {t('waterQuality')}
+            </Link>
             <Link to="/help" className={`text-foreground hover:text-accent smooth-hover font-medium ${language === 'as' ? 'assamese-font' : ''}`}>
               {language === 'en' ? 'Help' : 'সহায়'}
             </Link>
@@ -119,9 +122,58 @@ const HomePage = () => {
                   {t('reportNow')}
                 </Button>
               </Link>
-              <Button variant="secondary" size="lg" className={`w-full sm:w-auto ${language === 'as' ? 'assamese-font' : ''}`}>
-                {t('learnMore')}
-              </Button>
+              <Link to="/water-quality">
+                <Button variant="secondary" size="lg" className={`w-full sm:w-auto ${language === 'as' ? 'assamese-font' : ''}`}>
+                  {t('waterQuality')}
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Water Quality Section - Prominent Feature */}
+      <section className="py-20 bg-gradient-to-br from-blue-50/50 to-accent/5 border-y border-accent/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="slide-up">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 rounded-full bg-gradient-to-br from-blue-500/10 to-accent/10 soft-shadow">
+                  <Droplets className="h-8 w-8 text-accent floating-animation" />
+                </div>
+                <span className="px-3 py-1 bg-accent/10 text-accent text-sm font-medium rounded-full">
+                  {language === 'en' ? 'NEW FEATURE' : 'নতুন বৈশিষ্ট্য'}
+                </span>
+              </div>
+              <h2 className={`text-3xl lg:text-4xl font-bold text-foreground mb-6 ${language === 'as' ? 'assamese-font' : ''}`}>
+                {language === 'en' ? 'AI-Powered Water Quality Prediction' : 'AI-চালিত পানীৰ গুণগত মান পূৰ্বাভাস'}
+              </h2>
+              <p className={`text-lg text-muted-foreground mb-8 leading-relaxed ${language === 'as' ? 'assamese-font' : ''}`}>
+                {language === 'en' 
+                  ? 'Test water quality parameters and get instant AI-powered predictions about water safety. Protect your community with advanced water analysis technology.'
+                  : 'পানীৰ গুণগত মানৰ পেৰামিটাৰ পৰীক্ষা কৰক আৰু পানীৰ সুৰক্ষাৰ বিষয়ে তাৎক্ষণিক AI-চালিত পূৰ্বাভাস লাভ কৰক। উন্নত পানী বিশ্লেষণ প্ৰযুক্তিৰ সৈতে আপোনাৰ সমাজক সুৰক্ষিত কৰক।'
+                }
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/water-quality">
+                  <Button variant="hero" className={`w-full sm:w-auto pulse-glow ${language === 'as' ? 'assamese-font' : ''}`}>
+                    {language === 'en' ? 'Test Water Quality' : 'পানীৰ গুণগত মান পৰীক্ষা কৰক'}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-square bg-gradient-to-br from-blue-100/50 to-accent/10 rounded-2xl soft-shadow flex items-center justify-center">
+                <div className="relative">
+                  <Droplets className="h-32 w-32 text-accent/60 floating-animation" />
+                  <div className="absolute -top-4 -right-4 p-2 bg-emerald-100 rounded-full">
+                    <CheckCircle className="h-6 w-6 text-emerald-600" />
+                  </div>
+                  <div className="absolute -bottom-4 -left-4 p-2 bg-blue-100 rounded-full">
+                    <Zap className="h-6 w-6 text-blue-600" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

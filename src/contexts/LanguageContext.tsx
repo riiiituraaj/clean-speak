@@ -24,6 +24,7 @@ const translations = {
     forum: "Forum", 
     laws: "Laws",
     contact: "Contact",
+    waterQuality: "Water Quality",
     signIn: "Sign In",
     signUp: "Sign Up",
     
@@ -79,6 +80,7 @@ const translations = {
     forum: "মঞ্চ",
     laws: "আইন",
     contact: "যোগাযোগ",
+    waterQuality: "পানীৰ গুণগত মান",
     signIn: "প্ৰৱেশ",
     signUp: "নিবন্ধন",
     

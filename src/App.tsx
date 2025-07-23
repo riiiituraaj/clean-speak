@@ -9,6 +9,7 @@ import ReportPage from "./pages/ReportPage";
 import LawsPage from "./pages/LawsPage";
 import ForumPage from "./pages/ForumPage";
 import ContactsPage from "./pages/ContactsPage";
+import WaterQualityPage from "./pages/WaterQualityPage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
 import HelpPage from "./pages/HelpPage";
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/laws" element={<LawsPage />} />
             <Route path="/forum" element={<ForumPage />} />
             <Route path="/contacts" element={<ContactsPage />} />
+            <Route path="/water-quality" element={<WaterQualityPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/help" element={<HelpPage />} />
