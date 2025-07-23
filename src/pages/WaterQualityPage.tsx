@@ -22,6 +22,27 @@ const WaterQualityPage = () => {
     turbidity: "",
     dissolvedOxygen: "",
     conductivity: "",
+    totalDissolvedSolids: "",
+    alkalinity: "",
+    hardness: "",
+    chlorine: "",
+    fluoride: "",
+    nitrates: "",
+    phosphates: "",
+    bacteria: "",
+    coliform: "",
+    sulfates: "",
+    ammonia: "",
+    iron: "",
+    manganese: "",
+    chlorophyll: "",
+    salinity: "",
+    suspendedSolids: "",
+    biologicalOxygenDemand: "",
+    chemicalOxygenDemand: "",
+    waterUsage: "",
+    nearbyActivities: "",
+    seasonalFactors: "",
     additionalNotes: ""
   });
   const [prediction, setPrediction] = useState<any>(null);
@@ -155,73 +176,360 @@ const WaterQualityPage = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label className={`flex items-center gap-2 ${language === 'as' ? 'assamese-font' : ''}`}>
-                      <Zap className="h-4 w-4" />
-                      pH Level (0-14)
-                    </Label>
-                    <Input
-                      type="number"
-                      step="0.1"
-                      min="0"
-                      max="14"
-                      value={formData.ph}
-                      onChange={(e) => setFormData({...formData, ph: e.target.value})}
-                      placeholder="7.0"
-                    />
-                  </div>
-                  <div>
-                    <Label className={`flex items-center gap-2 ${language === 'as' ? 'assamese-font' : ''}`}>
-                      <Thermometer className="h-4 w-4" />
-                      {language === 'en' ? 'Temperature (°C)' : 'তাপমাত্ৰা (°C)'}
-                    </Label>
-                    <Input
-                      type="number"
-                      value={formData.temperature}
-                      onChange={(e) => setFormData({...formData, temperature: e.target.value})}
-                      placeholder="25"
-                    />
+                {/* Physical Parameters */}
+                <div className="space-y-4">
+                  <h3 className={`text-lg font-semibold text-foreground border-b pb-2 ${language === 'as' ? 'assamese-font' : ''}`}>
+                    {language === 'en' ? 'Physical Parameters' : 'ভৌতিক পেৰামিটাৰ'}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className={`flex items-center gap-2 ${language === 'as' ? 'assamese-font' : ''}`}>
+                        <Zap className="h-4 w-4" />
+                        pH Level (0-14)
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        max="14"
+                        value={formData.ph}
+                        onChange={(e) => setFormData({...formData, ph: e.target.value})}
+                        placeholder="7.0"
+                      />
+                    </div>
+                    <div>
+                      <Label className={`flex items-center gap-2 ${language === 'as' ? 'assamese-font' : ''}`}>
+                        <Thermometer className="h-4 w-4" />
+                        {language === 'en' ? 'Temperature (°C)' : 'তাপমাত্ৰা (°C)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.temperature}
+                        onChange={(e) => setFormData({...formData, temperature: e.target.value})}
+                        placeholder="25"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Turbidity (NTU)' : 'ঘোলাত্ব (NTU)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        value={formData.turbidity}
+                        onChange={(e) => setFormData({...formData, turbidity: e.target.value})}
+                        placeholder="1.0"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Total Dissolved Solids (mg/L)' : 'মুঠ দ্ৰৱীভূত কঠিন পদাৰ্থ (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.totalDissolvedSolids}
+                        onChange={(e) => setFormData({...formData, totalDissolvedSolids: e.target.value})}
+                        placeholder="300"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Conductivity (μS/cm)' : 'পৰিবাহিতা (μS/cm)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.conductivity}
+                        onChange={(e) => setFormData({...formData, conductivity: e.target.value})}
+                        placeholder="500"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Suspended Solids (mg/L)' : 'ভাসমান কঠিন পদাৰ্থ (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.suspendedSolids}
+                        onChange={(e) => setFormData({...formData, suspendedSolids: e.target.value})}
+                        placeholder="10"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label className={language === 'as' ? 'assamese-font' : ''}>
-                      {language === 'en' ? 'Turbidity (NTU)' : 'ঘোলাত্ব (NTU)'}
-                    </Label>
-                    <Input
-                      type="number"
-                      step="0.1"
-                      value={formData.turbidity}
-                      onChange={(e) => setFormData({...formData, turbidity: e.target.value})}
-                      placeholder="1.0"
-                    />
-                  </div>
-                  <div>
-                    <Label className={language === 'as' ? 'assamese-font' : ''}>
-                      {language === 'en' ? 'Dissolved Oxygen (mg/L)' : 'দ্ৰৱীভূত অক্সিজেন (mg/L)'}
-                    </Label>
-                    <Input
-                      type="number"
-                      step="0.1"
-                      value={formData.dissolvedOxygen}
-                      onChange={(e) => setFormData({...formData, dissolvedOxygen: e.target.value})}
-                      placeholder="8.0"
-                    />
+                {/* Chemical Parameters */}
+                <div className="space-y-4">
+                  <h3 className={`text-lg font-semibold text-foreground border-b pb-2 ${language === 'as' ? 'assamese-font' : ''}`}>
+                    {language === 'en' ? 'Chemical Parameters' : 'ৰাসায়নিক পেৰামিটাৰ'}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Dissolved Oxygen (mg/L)' : 'দ্ৰৱীভূত অক্সিজেন (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        value={formData.dissolvedOxygen}
+                        onChange={(e) => setFormData({...formData, dissolvedOxygen: e.target.value})}
+                        placeholder="8.0"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'BOD (mg/L)' : 'BOD (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.biologicalOxygenDemand}
+                        onChange={(e) => setFormData({...formData, biologicalOxygenDemand: e.target.value})}
+                        placeholder="3"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'COD (mg/L)' : 'COD (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.chemicalOxygenDemand}
+                        onChange={(e) => setFormData({...formData, chemicalOxygenDemand: e.target.value})}
+                        placeholder="10"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Alkalinity (mg/L)' : 'ক্ষাৰত্ব (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.alkalinity}
+                        onChange={(e) => setFormData({...formData, alkalinity: e.target.value})}
+                        placeholder="120"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Hardness (mg/L CaCO3)' : 'কঠিনত্ব (mg/L CaCO3)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.hardness}
+                        onChange={(e) => setFormData({...formData, hardness: e.target.value})}
+                        placeholder="150"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Chlorine (mg/L)' : 'ক্লোৰিন (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        value={formData.chlorine}
+                        onChange={(e) => setFormData({...formData, chlorine: e.target.value})}
+                        placeholder="0.5"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                <div>
-                  <Label className={language === 'as' ? 'assamese-font' : ''}>
-                    {language === 'en' ? 'Conductivity (μS/cm)' : 'পৰিবাহিতা (μS/cm)'}
-                  </Label>
-                  <Input
-                    type="number"
-                    value={formData.conductivity}
-                    onChange={(e) => setFormData({...formData, conductivity: e.target.value})}
-                    placeholder="500"
-                  />
+                {/* Mineral Content */}
+                <div className="space-y-4">
+                  <h3 className={`text-lg font-semibold text-foreground border-b pb-2 ${language === 'as' ? 'assamese-font' : ''}`}>
+                    {language === 'en' ? 'Mineral Content' : 'খনিজ পদাৰ্থৰ পৰিমাণ'}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Fluoride (mg/L)' : 'ফ্লোৰাইড (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        value={formData.fluoride}
+                        onChange={(e) => setFormData({...formData, fluoride: e.target.value})}
+                        placeholder="0.7"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Nitrates (mg/L)' : 'নাইট্ৰেট (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.nitrates}
+                        onChange={(e) => setFormData({...formData, nitrates: e.target.value})}
+                        placeholder="5"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Phosphates (mg/L)' : 'ফচফেট (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        value={formData.phosphates}
+                        onChange={(e) => setFormData({...formData, phosphates: e.target.value})}
+                        placeholder="0.1"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Sulfates (mg/L)' : 'ছালফেট (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.sulfates}
+                        onChange={(e) => setFormData({...formData, sulfates: e.target.value})}
+                        placeholder="250"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Iron (mg/L)' : 'লো (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        value={formData.iron}
+                        onChange={(e) => setFormData({...formData, iron: e.target.value})}
+                        placeholder="0.3"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Manganese (mg/L)' : 'মেংগানিজ (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        value={formData.manganese}
+                        onChange={(e) => setFormData({...formData, manganese: e.target.value})}
+                        placeholder="0.05"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Ammonia (mg/L)' : 'এমোনিয়া (mg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        value={formData.ammonia}
+                        onChange={(e) => setFormData({...formData, ammonia: e.target.value})}
+                        placeholder="0.5"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Salinity (‰)' : 'লৱণত্ব (‰)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        value={formData.salinity}
+                        onChange={(e) => setFormData({...formData, salinity: e.target.value})}
+                        placeholder="0.5"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Biological Parameters */}
+                <div className="space-y-4">
+                  <h3 className={`text-lg font-semibold text-foreground border-b pb-2 ${language === 'as' ? 'assamese-font' : ''}`}>
+                    {language === 'en' ? 'Biological Parameters' : 'জৈৱিক পেৰামিটাৰ'}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'E. Coli (CFU/100ml)' : 'ই. কলাই (CFU/100ml)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.bacteria}
+                        onChange={(e) => setFormData({...formData, bacteria: e.target.value})}
+                        placeholder="0"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Total Coliform (CFU/100ml)' : 'মুঠ কলিফৰ্ম (CFU/100ml)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        value={formData.coliform}
+                        onChange={(e) => setFormData({...formData, coliform: e.target.value})}
+                        placeholder="0"
+                      />
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Chlorophyll-a (μg/L)' : 'ক্লোৰোফিল-a (μg/L)'}
+                      </Label>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        value={formData.chlorophyll}
+                        onChange={(e) => setFormData({...formData, chlorophyll: e.target.value})}
+                        placeholder="2.0"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Environmental Context */}
+                <div className="space-y-4">
+                  <h3 className={`text-lg font-semibold text-foreground border-b pb-2 ${language === 'as' ? 'assamese-font' : ''}`}>
+                    {language === 'en' ? 'Environmental Context' : 'পৰিবেশগত প্ৰসংগ'}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Water Usage Type' : 'পানীৰ ব্যৱহাৰৰ ধৰণ'}
+                      </Label>
+                      <Select value={formData.waterUsage} onValueChange={(value) => setFormData({...formData, waterUsage: value})}>
+                        <SelectTrigger>
+                          <SelectValue placeholder={language === 'en' ? 'Select usage' : 'ব্যৱহাৰ বাছনি কৰক'} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="drinking">{language === 'en' ? 'Drinking' : 'খোৱা'}</SelectItem>
+                          <SelectItem value="irrigation">{language === 'en' ? 'Irrigation' : 'জলসিঞ্চন'}</SelectItem>
+                          <SelectItem value="industrial">{language === 'en' ? 'Industrial' : 'ঔদ্যোগিক'}</SelectItem>
+                          <SelectItem value="recreational">{language === 'en' ? 'Recreational' : 'বিনোদনৰ বাবে'}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label className={language === 'as' ? 'assamese-font' : ''}>
+                        {language === 'en' ? 'Seasonal Factors' : 'ঋতুগত কাৰক'}
+                      </Label>
+                      <Select value={formData.seasonalFactors} onValueChange={(value) => setFormData({...formData, seasonalFactors: value})}>
+                        <SelectTrigger>
+                          <SelectValue placeholder={language === 'en' ? 'Select season' : 'ঋতু বাছনি কৰক'} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="monsoon">{language === 'en' ? 'Monsoon' : 'বৰষুণ'}</SelectItem>
+                          <SelectItem value="winter">{language === 'en' ? 'Winter' : 'শীতকাল'}</SelectItem>
+                          <SelectItem value="summer">{language === 'en' ? 'Summer' : 'গ্ৰীষ্মকাল'}</SelectItem>
+                          <SelectItem value="post-monsoon">{language === 'en' ? 'Post-Monsoon' : 'বৰষুণৰ পিছত'}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  <div>
+                    <Label className={language === 'as' ? 'assamese-font' : ''}>
+                      {language === 'en' ? 'Nearby Activities/Pollution Sources' : 'ওচৰৰ কাৰ্যকলাপ/প্ৰদূষণৰ উৎস'}
+                    </Label>
+                    <Textarea
+                      value={formData.nearbyActivities}
+                      onChange={(e) => setFormData({...formData, nearbyActivities: e.target.value})}
+                      placeholder={language === 'en' ? 'Industries, agriculture, sewage discharge, etc.' : 'উদ্যোগ, কৃষি, নৰ্দমা নিষ্কাশন আদি'}
+                      className={language === 'as' ? 'assamese-font' : ''}
+                    />
+                  </div>
                 </div>
 
                 <div>
